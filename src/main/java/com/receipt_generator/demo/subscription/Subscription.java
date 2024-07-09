@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class Subscription implements Serializable {
 	
-	private String id;
+	private Integer id;
 	
 	private String subscriptionPlan;
 	
@@ -17,51 +17,37 @@ public class Subscription implements Serializable {
 	
 	private Double price;
 	
-	public String getId() {
-		return id;
+	public Subscription(Integer id, String subscriptionPlan, LocalDate startDate, LocalDate endDate, String description,
+			Double price) {
+		this.id = id;
+		this.subscriptionPlan = subscriptionPlan;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.description = description;
+		this.price = price;
 	}
 	
-	public void setId(String id) {
-		this.id = id;
+	public Integer getId() {
+		return id;
 	}
 	
 	public String getSubscriptionPlan() {
 		return subscriptionPlan;
 	}
 	
-	public void setSubscriptionPlan(String subscriptionPlan) {
-		this.subscriptionPlan = subscriptionPlan;
-	}
-	
 	public LocalDate getStartDate() {
 		return startDate;
-	}
-	
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
 	}
 	
 	public LocalDate getEndDate() {
 		return endDate;
 	}
 	
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
-	}
-	
 	public String getDescription() {
 		return description;
 	}
 	
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
 	public Double getPrice() {
 		return price;
-	}
-	
-	public void setPrice(Double price) {
-		this.price = price;
 	}
 }

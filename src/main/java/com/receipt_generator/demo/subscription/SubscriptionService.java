@@ -1,5 +1,6 @@
 package com.receipt_generator.demo.subscription;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,10 +23,10 @@ public class SubscriptionService {
 	public ResponseEntity<byte[]> downloadSubscriptionReceipts(){
 		
 		List<Subscription> subscriptions = new ArrayList<>() {};
+		subscriptions.add(
+				new Subscription(1, "Gold Package", LocalDate.of(2024, 7, 9),
+				LocalDate.of(2025, 7,9), "Annual Subscription", 20000.0 ));
 		
-		if (subscriptions.isEmpty()){
-			return ResponseEntity.noContent().build();
-		}
 		
 		String subscriptionPdfHtml = parseSubscriptionTemplate(subscriptions);
 		
@@ -53,7 +54,9 @@ public class SubscriptionService {
 		Context context = new Context();
 		Map<String, Object> templateVariables = Map.of(
 				"subscriptions", subscriptions,
-				"user", "user");
+				"userFirstName", "Foo",
+				"userLastName","Bar",
+				"userCompanyName", "BarFoo Services Ltd");
 		
 		context.setVariables(templateVariables);
 		
