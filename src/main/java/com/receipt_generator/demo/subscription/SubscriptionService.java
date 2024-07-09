@@ -1,6 +1,6 @@
 package com.receipt_generator.demo.subscription;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,9 +19,9 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 @Service
 public class SubscriptionService {
 	
-	public ResponseEntity<byte[]> downloadSubscriptionReceipts(LocalDate fromDate, LocalDate toDate){
+	public ResponseEntity<byte[]> downloadSubscriptionReceipts(){
 		
-		List<Subscription> subscriptions = null;
+		List<Subscription> subscriptions = new ArrayList<>() {};
 		
 		if (subscriptions.isEmpty()){
 			return ResponseEntity.noContent().build();
@@ -30,7 +30,7 @@ public class SubscriptionService {
 		String subscriptionPdfHtml = parseSubscriptionTemplate(subscriptions);
 		
 		byte[] pdf = generatePdfFromHtml(subscriptionPdfHtml);
-		String fileName = "subscription_receipt_%s_%s%s".formatted(fromDate.toString(), toDate.toString(),".pdf");
+		String fileName = "subscription_receipt.pdf";
 		
 		HttpHeaders header = new HttpHeaders();
 		header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+fileName);
