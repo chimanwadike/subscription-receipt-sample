@@ -133,9 +133,9 @@
 							<td></td>
 
 							<td>
-								<span data-th-text="${subscription.getCompany().getName()}"></span> <br />
-								<span data-th-text="${user.getFirstName() + ' '+ user.getLastName()}"></span> <br />
-								<span data-th-text="${user.getEmailAddress()}"></span>
+								<span data-th-text="${userCompanyName}"></span> <br />
+								<span data-th-text="${userFirstName + ' '+ userLastName}"></span> <br />
+								<span data-th-text="${userEmailAddress}"></span>
 							</td>
 						</tr>
 					</table>
@@ -149,16 +149,16 @@
 			</tr>
 
 			<tr class="item last">
-				<td data-th-text="${subscription.getSubscriptionPlan().getSubscriptionCategory().getName()+' Package ('+subscription.getSubscriptionPlan().getPeriod()+')'}"></td>
+				<td data-th-text="${subscription.getSubscriptionPlan}"></td>
 				<td data-th-text="${#temporals.format(subscription.startDate, 'MMM dd, yyyy')+ ' - '+ #temporals.format(subscription.endDate, 'MMM dd, yyyy') }"></td>
 
-				<td data-th-text="${'£'+subscription.getSubscriptionPlan().getAmount()}" ></td>
+				<td data-th-text="${'£'+subscription.getPrice()}" ></td>
 			</tr>
 
 			<tr class="total">
 				<td colspan="2"></td>
 
-				<td data-th-text="${'Total: £'+subscription.getSubscriptionPlan().getAmount()}" ></td>
+				<td data-th-text="${'Total: £'+subscription.getPrice()}" ></td>
 			</tr>
 		</table>
 
